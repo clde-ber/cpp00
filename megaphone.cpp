@@ -6,6 +6,7 @@ using namespace std;
 string  to_upper(string str)
 {
     unsigned long i;
+
     string res("");
 
     for (i = 0; i < str.length(); i++) 
@@ -15,7 +16,7 @@ string  to_upper(string str)
 
 int main(int ac, char **av)
 {
-    int i;
+    unsigned long i;
     string arg("");
 
     if (ac == 1)
