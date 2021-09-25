@@ -4,7 +4,7 @@ using namespace std;
 
 int idx = 0;
 
-profile::profile(unsigned long ix, std::string fn, std::string ln, std::string nn, std::string pn, std::string ds) : index(ix), first_name(fn), last_name(ln), nickname(nn), phone_number(pn), darkest_secret(ds)
+profile::profile(void) : index(0), first_name(""), last_name(""), nickname(""), phone_number(""), darkest_secret("")
 {
     cout << "constructor called" << endl;
     return ;
@@ -16,8 +16,11 @@ profile::~profile(void)
     return ;
 }
 
-profile_list::profile_list(int ll, char sp, char el, profile *pl) : line_length(ll), separator(sp), eol(el), profiles(pl)
+profile_list::profile_list(int ll, char sp, char el, profile *pl) : line_length(ll), separator(sp), eol(el)
 {
+    profile tmp;
+    for (int i = 0; i < 8; i++)
+        pl[i] = tmp;
     cout << "constructor called" << endl;
     return ;
 }
@@ -46,11 +49,15 @@ bool profile::get_profile(unsigned long index, char **profiles, profile *tmp) co
 
 int profile::do_print(unsigned long index, char **profiles, profile *tmp) const
 {
-    cout << tmp->first_name << endl;
-    cout << tmp->last_name << endl;
-    cout << tmp->nickname << endl;
-    cout << tmp->phone_number << endl;
-    cout << tmp->darkest_secret << endl;
+    for (int i = 0; i < tmp[0].index; i++)
+    {
+        cout << tmp[i].first_name << endl;
+        cout << tmp[i].last_name << endl;
+        cout << tmp[i].nickname << endl;
+        cout << tmp[i].phone_number << endl;
+        cout << tmp[i].darkest_secret << endl;
+        i++;
+    }
     return 0;
 }
 
@@ -58,32 +65,32 @@ int profile::do_add(profile *ind)
 {
     string input("");
 
-    if (ind->index == 8)
-        ind->index = 0;
+    if (ind[0].index == 8)
+        ind[0].index = 0;
     cout << "Please enter first name" << endl;
     getline(cin, input);
-    ind[ind->index].first_name = input;
+    ind[ind[0].index].first_name = input;
     cout << "Please enter last name" << endl;
     getline(cin, input);
-    ind[ind->index].last_name = input;
+    ind[ind[0].index].last_name = input;
     cout << "Please enter nickname" << endl;
     getline(cin, input);
-    ind[ind->index].nickname = input;
+    ind[ind[0].index].nickname = input;
     cout << "Please enter phone number" << endl;
     getline(cin, input);
-    ind[ind->index].phone_number = input;
+    ind[ind[0].index].phone_number = input;
     cout << "Please enter darkest secret" << endl;
     getline(cin, input);
-    ind[ind->index].darkest_secret = input;
-    ind[ind->index].index++;
+    ind[ind[0].index].darkest_secret = input;
+    ind[0].index++;
     return 0;
 }
 
 int main(void)
 {
     string  line;
-    profile ind(0, "", "", "", "", "");
-    profile_list prof(10, '|', '\n', &ind);
+    profile ind[8];
+    profile_list prof(10, '|', '\n', ind);
 
     while (cout << "Please type a command" << endl)
     {
@@ -91,11 +98,11 @@ int main(void)
         try
         {
             if (line == "ADD")
-                ind.do_add(&ind);
+                ind->do_add(ind);
             else if (line == "EXIT")
                 break ;
             else if (line == "SEARCH")
-                ind.do_print(0, NULL, &ind);
+                ind->do_print(0, NULL, ind);
             else
                 throw "Wrong entry\n";
         }
