@@ -32,7 +32,7 @@ void    Account::_displayTimestamp(void)
     std::cout << timeinfo->tm_min;
     if (timeinfo->tm_sec < 10)
         std::cout << "0";
-    std::cout << timeinfo->tm_sec << "]";
+    std::cout << timeinfo->tm_sec << "] ";
 }
 
 Account::Account( int initial_deposit ) : _amount(initial_deposit), \
