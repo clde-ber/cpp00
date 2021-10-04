@@ -9,11 +9,34 @@ int Account::_totalNbWithdrawals = 0;
 
 void    Account::_displayTimestamp(void)
 {
-     std::time_t result = std::time(nullptr);
-    std::cout << std::asctime(std::localtime(&result));
+    time_t time;
+    tm *timeinfo;
+
+    std::time_t result = std::time(&time);
+    timeinfo = localtime(&time);
+    timeinfo->tm_year += 1900;
+    timeinfo->tm_mon += 1;
+    std::cout << "[" << timeinfo->tm_year;
+    if (timeinfo->tm_mon < 10)
+        std::cout << "0";
+    std::cout << timeinfo->tm_mon;
+    if (timeinfo->tm_mday < 10)
+        std::cout << "0";
+    std::cout << timeinfo->tm_mday;
+    std::cout << "_";
+    if (timeinfo->tm_hour < 10)
+        std::cout << "0";
+    std::cout << timeinfo->tm_hour;
+    if (timeinfo->tm_min < 10)
+        std::cout << "0";
+    std::cout << timeinfo->tm_min;
+    if (timeinfo->tm_sec < 10)
+        std::cout << "0";
+    std::cout << timeinfo->tm_sec << "]";
 }
 
-Account::Account( int initial_deposit ) : _amount(initial_deposit), _accountIndex(0), _nbDeposits(0), _nbWithdrawals(0)
+Account::Account( int initial_deposit ) : _amount(initial_deposit), \
+_accountIndex(0), _nbDeposits(0), _nbWithdrawals(0)
 {
     switch(initial_deposit)
     {
