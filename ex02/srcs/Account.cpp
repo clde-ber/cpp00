@@ -6,6 +6,7 @@ int Account::_nbAccounts = 8;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
+static int index = 0;
 
 void    Account::_displayTimestamp(void)
 {
@@ -38,25 +39,7 @@ void    Account::_displayTimestamp(void)
 Account::Account( int initial_deposit ) : _accountIndex(0), \
 _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
-    switch(initial_deposit)
-    {
-        case 42:    this->_accountIndex = 0;
-                    break;
-        case 54:    this->_accountIndex = 1;
-                    break;
-        case 957:   this->_accountIndex = 2;
-                    break;
-        case 432:   this->_accountIndex = 3;
-                    break;
-        case 1234:  this->_accountIndex = 4;
-                    break;
-        case 0:     this->_accountIndex = 5;
-                    break;
-        case 754:   this->_accountIndex = 6;
-                    break;
-        case 16576: this->_accountIndex = 7;
-                    break;
-    }
+    this->_accountIndex = index;
     _displayTimestamp();
     std::cout << "index:";
     std::cout << this->_accountIndex;
@@ -64,6 +47,7 @@ _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
     std::cout << this->_amount; 
     std::cout << ";created";
     std::cout << std::endl;
+    index++;
 }
 
 Account::~Account( void )
