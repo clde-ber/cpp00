@@ -20,7 +20,6 @@ class   profile
         profile(void); // constructor
         ~profile(void); // destructor
         int do_print(char **profiles, profile *tmp) const;
-        bool get_profile(char **profiles, profile *tmp) const;
         int do_add(profile *ind);
 };
 
@@ -29,7 +28,6 @@ class   profile_list
     public :
         profile_list(int ll, char sp, char el, profile *pl);
         ~profile_list(void);
-        bool set_profile(int index, char **profiles, profile_list **ind, profile_list **tmp);
 
     private :
         int     line_length;

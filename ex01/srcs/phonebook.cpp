@@ -31,22 +31,6 @@ profile_list::~profile_list(void)
     return ;
 }
 
-bool profile_list::set_profile(int index, char **profiles, profile_list **ind, profile_list **tmp)
-{
-    
-    return 0;
-}
-
-bool profile::get_profile(char **profiles, profile *tmp) const
-{
-    cout << tmp->first_name << endl;
-    cout << tmp->last_name << endl;
-    cout << tmp->nickname << endl;
-    cout << tmp->phone_number << endl;
-    cout << tmp->darkest_secret << endl;
-    return 0;
-}
-
 int profile::do_print(char **profiles, profile *tmp) const
 {
     for (int i = 0; i < tmp->contact_nb; i++)

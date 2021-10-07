@@ -12,8 +12,8 @@ void    Account::_displayTimestamp(void)
     time_t time;
     tm *timeinfo;
 
-    std::time_t result = std::time(&time);
-    timeinfo = localtime(&time);
+    std::time(&time);
+    timeinfo = std::localtime(&time);
     timeinfo->tm_year += 1900;
     timeinfo->tm_mon += 1;
     std::cout << "[" << timeinfo->tm_year;
@@ -35,8 +35,8 @@ void    Account::_displayTimestamp(void)
     std::cout << timeinfo->tm_sec << "] ";
 }
 
-Account::Account( int initial_deposit ) : _amount(initial_deposit), \
-_accountIndex(0), _nbDeposits(0), _nbWithdrawals(0)
+Account::Account( int initial_deposit ) : _accountIndex(0), \
+_amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
 {
     switch(initial_deposit)
     {

@@ -16,7 +16,7 @@ string  to_upper(string str)
 
 int main(int ac, char **av)
 {
-    unsigned long i;
+    int i;
     string arg("");
 
     if (ac == 1)
