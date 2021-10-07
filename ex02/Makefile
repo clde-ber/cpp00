@@ -5,7 +5,7 @@ LIST	=	tests \
 			Account \
 
 HEADER	=	-I includes/
-CFLAGS	=	-Wall -Wextra -Werror -MMD -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -MMD
 CC		=	clang++
 
 S_DIR	=	srcs/
