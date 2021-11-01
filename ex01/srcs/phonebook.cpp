@@ -1,18 +1,16 @@
 #include "phonebook.hpp"
 
-using namespace std;
-
 int idx = 0;
 
 profile::profile(void) : index(0), contact_nb(0), first_name(""), last_name(""), nickname(""), phone_number(""), darkest_secret("")
 {
-    cout << "constructor called" << endl;
+    std::cout << "constructor called" << std::endl;
     return ;
 }
 
 profile::~profile(void)
 {
-    cout << "destructor called" << endl;
+    std::cout << "destructor called" << std::endl;
     return ;
 }
 
@@ -21,32 +19,51 @@ profile_list::profile_list(int ll, char sp, char el, profile *pl) : line_length(
     profile tmp;
     for (int i = 0; i < 8; i++)
         pl[i] = tmp;
-    cout << "constructor called" << endl;
+    std::cout << "constructor called" << std::endl;
     return ;
 }
 
 profile_list::~profile_list(void)
 {
-    cout << "destructor called" << endl;
+    std::cout << "destructor called" << std::endl;
     return ;
 }
 
 int profile::do_print(char **profiles, profile *tmp) const
 {
+    int len;
+    
+    len = 0;
+    std::cout << "     index|" << "first name|" << " last name|" \
+        << "  nickname" << std::endl;
     for (int i = 0; i < tmp->contact_nb; i++)
     {
-        cout << tmp[i].first_name << endl;
-        cout << tmp[i].last_name << endl;
-        cout << tmp[i].nickname << endl;
-        cout << tmp[i].phone_number << endl;
-        cout << tmp[i].darkest_secret << endl;
+        std::cout << "         " << i << "|";
+        len = 10 - \
+        tmp[i].first_name.std::string::substr(0, 10).std::string::length();
+        for (int x = 0; x < std::abs(len); x++)
+            std::cout << " ";
+        std::cout << tmp[i].first_name.std::string::substr(0, 10);
+        std::cout << "|";
+        len = 10 - \
+        tmp[i].last_name.std::string::substr(0, 10).std::string::length();
+        for (int x = 0; x < abs(len); x++)
+            std::cout << " ";
+        std::cout << tmp[i].last_name.std::string::substr(0, 10);
+        std::cout << "|";
+        len = 10 - \
+        tmp[i].nickname.std::string::substr(0, 10).std::string::length();
+        for (int x = 0; x < abs(len); x++)
+            std::cout << " ";
+        std::cout << tmp[i].nickname.std::string::substr(0, 10);
+        std::cout << std::endl;
     }
     return 0;
 }
 
 int profile::do_add(profile *ind)
 {
-    string input("");
+    std::string input("");
 
     if (ind->index == 8)
         ind->index = 0;
@@ -54,34 +71,35 @@ int profile::do_add(profile *ind)
         ind->contact_nb = 8;
     if (ind->contact_nb != 8)
         ind->contact_nb = ind->index + 1;
-    cout << "Please enter first name" << endl;
-    getline(cin, input);
+    std::cout << "Please enter first name" << std::endl;
+    getline(std::cin, input);
     ind[ind->index].first_name = input;
-    cout << "Please enter last name" << endl;
-    getline(cin, input);
+    std::cout << "Please enter last name" << std::endl;
+    getline(std::cin, input);
     ind[ind->index].last_name = input;
-    cout << "Please enter nickname" << endl;
-    getline(cin, input);
+    std::cout << "Please enter nickname" << std::endl;
+    getline(std::cin, input);
     ind[ind->index].nickname = input;
-    cout << "Please enter phone number" << endl;
-    getline(cin, input);
+    std::cout << "Please enter phone number" << std::endl;
+    getline(std::cin, input);
     ind[ind->index].phone_number = input;
-    cout << "Please enter darkest secret" << endl;
-    getline(cin, input);
+    std::cout << "Please enter darkest secret" << std::endl;
+    getline(std::cin, input);
     ind[ind->index].darkest_secret = input;
+    ind[ind->index].index = ind->index;
     ind->index++;
     return 0;
 }
 
 int main(void)
 {
-    string  line;
+    std::string  line;
     profile ind[8];
     profile_list prof(10, '|', '\n', ind);
 
-    while (cout << "Please type a command" << endl)
+    while (std::cout << "Please type a command" << std::endl)
     {
-        getline(cin, line);
+        getline(std::cin, line);
         try
         {
             if (line == "ADD")
@@ -95,7 +113,7 @@ int main(void)
         }
         catch (const char *error)
         {
-            cout << error << endl;
+            std::cout << error << std::endl;
         }
     }
     return 0;
