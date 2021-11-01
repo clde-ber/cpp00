@@ -43,19 +43,28 @@ int profile::do_print(char **profiles, profile *tmp) const
         tmp[i].first_name.std::string::substr(0, 10).std::string::length();
         for (int x = 0; x < std::abs(len); x++)
             std::cout << " ";
-        std::cout << tmp[i].first_name.std::string::substr(0, 10);
+        if (len)
+            std::cout << tmp[i].first_name.std::string::substr(0, 10);
+        else
+            std::cout << tmp[i].first_name.std::string::substr(0, 9) << ".";
         std::cout << "|";
         len = 10 - \
         tmp[i].last_name.std::string::substr(0, 10).std::string::length();
         for (int x = 0; x < abs(len); x++)
             std::cout << " ";
-        std::cout << tmp[i].last_name.std::string::substr(0, 10);
+        if (len)
+            std::cout << tmp[i].last_name.std::string::substr(0, 10);
+        else
+            std::cout << tmp[i].last_name.std::string::substr(0, 9) << ".";
         std::cout << "|";
         len = 10 - \
         tmp[i].nickname.std::string::substr(0, 10).std::string::length();
         for (int x = 0; x < abs(len); x++)
             std::cout << " ";
-        std::cout << tmp[i].nickname.std::string::substr(0, 10);
+        if (len)
+            std::cout << tmp[i].nickname.std::string::substr(0, 10);
+        else
+            std::cout << tmp[i].nickname.std::string::substr(0, 9) << ".";
         std::cout << std::endl;
     }
     return 0;
