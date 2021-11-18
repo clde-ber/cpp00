@@ -14,7 +14,7 @@ profile::~profile(void)
     return ;
 }
 
-profile_list::profile_list(int ll, char sp, char el, profile *pl) : line_length(ll), separator(sp), eol(el)
+profile_list::profile_list(profile *pl)
 {
     profile tmp;
     for (int i = 0; i < 8; i++)
@@ -29,7 +29,7 @@ profile_list::~profile_list(void)
     return ;
 }
 
-int profile::do_print(char **profiles, profile *tmp) const
+int profile::do_print(profile *tmp) const
 {
     int len;
     
@@ -104,7 +104,7 @@ int main(void)
 {
     std::string  line;
     profile ind[8];
-    profile_list prof(10, '|', '\n', ind);
+    profile_list prof(ind);
 
     while (std::cout << "Please type a command" << std::endl)
     {
@@ -116,7 +116,7 @@ int main(void)
             else if (line == "EXIT")
                 break ;
             else if (line == "SEARCH")
-                ind->do_print(NULL, ind);
+                ind->do_print(ind);
             else
                 throw "Wrong entry\n";
         }

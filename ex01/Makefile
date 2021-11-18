@@ -4,8 +4,7 @@ NAME	=	phonebook
 LIST	=	phonebook \
 
 HEADER	=	-I includes/
-CFLAGS	=	-MMD
-			#-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -MMD -std=c++98
 CC		=	clang++
 
 S_DIR	=	srcs/
