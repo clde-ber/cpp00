@@ -1,4 +1,0 @@
-référence : autre moyen d'accéder à la meme variable ex int hello(16); int& salut(hello);
-get_line ~= get_next_line, permet de ne pas considérer les espaces comme des fins d'input
-cin.ignore() lorsqu'on utilise cin>>"..."
-count cin endl

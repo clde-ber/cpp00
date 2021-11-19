@@ -2,9 +2,9 @@
 
 int idx = 0;
 
-profile::profile(void) : index(0), contact_nb(0), first_name(""), last_name(""), nickname(""), phone_number(""), darkest_secret("")
+profile::profile(void) : index(0), _contactNb(0), _firstName(""), _lastName(""), _nickname(""), _phoneNumber(""), _darkestSecret("")
 {
-    std::cout << "constructor called" << std::endl;
+    std::cout << "constructor called - profile created" << std::endl;
     return ;
 }
 
@@ -14,57 +14,64 @@ profile::~profile(void)
     return ;
 }
 
-profile_list::profile_list(profile *pl)
+void    profile::printContact(std::string str)
 {
-    profile tmp;
-    for (int i = 0; i < 8; i++)
-        pl[i] = tmp;
-    std::cout << "constructor called" << std::endl;
-    return ;
+    int spaces(0);
+
+    spaces = 10 - str.length();
+    for (int x = 0; x < spaces; x++)
+        std::cout << " ";
+    if (str.length() <= 10)
+        std::cout << str;
+    else
+        std::cout << str.substr(0, 9) << ".";
 }
 
-profile_list::~profile_list(void)
+int profile::promptForIndex(void)
 {
-    std::cout << "destructor called" << std::endl;
-    return ;
+    std::string input("");
+
+    std::cout << "Please enter index for contact details" << std::endl;
+    getline(std::cin, input);
+    if (input.at(0) >= 48 and input.at(0) <= 55 and input.length() == 1)
+    {
+        std::cout << "     index|" << "first name|" << " last name|" \
+        << " nickname |" << "phone num.|" << "darkest s." << std::endl;
+        std::cout << "         " << input.at(0) << "|";
+        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._firstName);
+        std::cout << "|";
+        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._lastName);
+        std::cout << "|";
+        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._nickname);
+        std::cout << "|";
+        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._phoneNumber);
+        std::cout << "|";
+        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._darkestSecret);
+        std::cout << std::endl;
+        return 1;
+    }
+    if (input.compare("EXIT"))
+    {
+        std::cout << "Index must range from 0 to 7" << std::endl;
+        return 1;
+    }
+    return 0;
 }
 
 int profile::do_print(profile *tmp) const
 {
-    int len;
-    
-    len = 0;
+    int i = 0;
+
     std::cout << "     index|" << "first name|" << " last name|" \
         << "  nickname" << std::endl;
-    for (int i = 0; i < tmp->contact_nb; i++)
+    for (i = 0; i < tmp->_contactNb; i++)
     {
         std::cout << "         " << i << "|";
-        len = 10 - \
-        tmp[i].first_name.std::string::substr(0, 10).std::string::length();
-        for (int x = 0; x < std::abs(len); x++)
-            std::cout << " ";
-        if (len)
-            std::cout << tmp[i].first_name.std::string::substr(0, 10);
-        else
-            std::cout << tmp[i].first_name.std::string::substr(0, 9) << ".";
+        tmp[i].printContact(tmp[i]._firstName);
         std::cout << "|";
-        len = 10 - \
-        tmp[i].last_name.std::string::substr(0, 10).std::string::length();
-        for (int x = 0; x < abs(len); x++)
-            std::cout << " ";
-        if (len)
-            std::cout << tmp[i].last_name.std::string::substr(0, 10);
-        else
-            std::cout << tmp[i].last_name.std::string::substr(0, 9) << ".";
+        tmp[i].printContact(tmp[i]._lastName);
         std::cout << "|";
-        len = 10 - \
-        tmp[i].nickname.std::string::substr(0, 10).std::string::length();
-        for (int x = 0; x < abs(len); x++)
-            std::cout << " ";
-        if (len)
-            std::cout << tmp[i].nickname.std::string::substr(0, 10);
-        else
-            std::cout << tmp[i].nickname.std::string::substr(0, 9) << ".";
+        tmp[i].printContact(tmp[i]._nickname);
         std::cout << std::endl;
     }
     return 0;
@@ -74,29 +81,29 @@ int profile::do_add(profile *ind)
 {
     std::string input("");
 
+    std::cout << "Please enter first name" << std::endl;
+    getline(std::cin, input);
+    ind[ind->index]._firstName = input;
+    std::cout << "Please enter last name" << std::endl;
+    getline(std::cin, input);
+    ind[ind->index]._lastName = input;
+    std::cout << "Please enter _nickname" << std::endl;
+    getline(std::cin, input);
+    ind[ind->index]._nickname = input;
+    std::cout << "Please enter phone number" << std::endl;
+    getline(std::cin, input);
+    ind[ind->index]._phoneNumber = input;
+    std::cout << "Please enter darkest secret" << std::endl;
+    getline(std::cin, input);
+    ind[ind->index]._darkestSecret = input;
+    ind[ind->index].index = ind->index;
+    ind->index++;
     if (ind->index == 8)
         ind->index = 0;
     else
-        ind->contact_nb = 8;
-    if (ind->contact_nb != 8)
-        ind->contact_nb = ind->index + 1;
-    std::cout << "Please enter first name" << std::endl;
-    getline(std::cin, input);
-    ind[ind->index].first_name = input;
-    std::cout << "Please enter last name" << std::endl;
-    getline(std::cin, input);
-    ind[ind->index].last_name = input;
-    std::cout << "Please enter nickname" << std::endl;
-    getline(std::cin, input);
-    ind[ind->index].nickname = input;
-    std::cout << "Please enter phone number" << std::endl;
-    getline(std::cin, input);
-    ind[ind->index].phone_number = input;
-    std::cout << "Please enter darkest secret" << std::endl;
-    getline(std::cin, input);
-    ind[ind->index].darkest_secret = input;
-    ind[ind->index].index = ind->index;
-    ind->index++;
+        ind->_contactNb = 8;
+    if (ind->_contactNb != 8)
+        ind->_contactNb = ind->index + 1;
     return 0;
 }
 
@@ -104,26 +111,22 @@ int main(void)
 {
     std::string  line;
     profile ind[8];
-    profile_list prof(ind);
 
     while (std::cout << "Please type a command" << std::endl)
     {
         getline(std::cin, line);
-        try
+        if (line == "ADD")
+            ind->do_add(ind);
+        else if (line == "EXIT")
+            return 0 ;
+        else if (line == "SEARCH")
         {
-            if (line == "ADD")
-                ind->do_add(ind);
-            else if (line == "EXIT")
-                break ;
-            else if (line == "SEARCH")
-                ind->do_print(ind);
-            else
-                throw "Wrong entry\n";
+            ind->do_print(ind);
+            if (!ind->promptForIndex())
+                return 0;       
         }
-        catch (const char *error)
-        {
-            std::cout << error << std::endl;
-        }
+        else
+            std::cout << "Wrong entry" << std::endl;
     }
     return 0;
 }
