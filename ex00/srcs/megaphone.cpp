@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-std::string  to_upper(std::string str)
+std::string  toUpper(std::string str)
 {
     unsigned long i;
 
@@ -23,7 +23,7 @@ int main(int ac, char **av)
     {
         for (i = 1; i < ac; i++)
         {
-            arg = to_upper(av[i]);
+            arg = toUpper(av[i]);
             std::cout << arg;
         }
         std::cout << "" << std::endl;
