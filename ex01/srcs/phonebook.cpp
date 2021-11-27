@@ -35,19 +35,12 @@ int profile::promptForIndex(void)
     getline(std::cin, input);
     if (input.at(0) >= 48 and input.at(0) <= 55 and input.length() == 1)
     {
-        std::cout << "     index|" << "first name|" << " last name|" \
-        << " nickname |" << "phone num.|" << "darkest s." << std::endl;
-        std::cout << "         " << input.at(0) << "|";
-        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._firstName);
-        std::cout << "|";
-        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._lastName);
-        std::cout << "|";
-        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._nickname);
-        std::cout << "|";
-        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._phoneNumber);
-        std::cout << "|";
-        this[input.at(0) - 48].printContact(this[input.at(0) - 48]._darkestSecret);
-        std::cout << std::endl;
+        std::cout << "     index|     " << input.at(0) << std::endl;
+        std::cout << "first name|     " << this[input.at(0) - 48]._firstName << std::endl;
+        std::cout << " last name|     " << this[input.at(0) - 48]._lastName << std::endl;
+        std::cout << " nickname |     " << this[input.at(0) - 48]._nickname << std::endl;
+        std::cout << "phone num.|     " << this[input.at(0) - 48]._phoneNumber << std::endl;
+        std::cout << "darkest s.|     " << this[input.at(0) - 48]._darkestSecret << std::endl;
         return 1;
     }
     if (input.compare("EXIT"))
